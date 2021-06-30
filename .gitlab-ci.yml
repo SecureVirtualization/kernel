@@ -5,6 +5,7 @@ build:
   before_script:
     - apt update && apt -y install bison flex bc
     - make O=build defconfig
+    - sed -i -- 's/# CONFIG_MMC_SDHCI_PCI is not set/CONFIG_MMC_SDHCI_PCI=y/g' build/.config
   script:
     - make O=build Image
   artifacts:
