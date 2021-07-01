@@ -6,6 +6,10 @@ build:
     - apt update && apt -y install bison flex bc
     - make O=build defconfig
     - sed -i -- 's/# CONFIG_MMC_SDHCI_PCI is not set/CONFIG_MMC_SDHCI_PCI=y/g' build/.config
+    - sed -i -- 's/# CONFIG_NE2K_PCI is not set/CONFIG_NE2K_PCI=y/g' build/.config
+    - sed -i -- 's/# CONFIG_8139CP is not set/CONFIG_8139CP=y/g' build/.config
+    - sed -i -- 's/# CONFIG_SND_ENS1370 is not set/CONFIG_SND_ENS1370=y/g' build/.config
+    - sed -i -- 's/# CONFIG_SND_SOC_AC97_CODEC is not set/CONFIG_SND_SOC_AC97_CODEC=y/g' build/.config
   script:
     - make O=build Image
   artifacts:
