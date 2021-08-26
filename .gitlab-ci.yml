@@ -10,6 +10,10 @@ build:
     - sed -i -- 's/# CONFIG_8139CP is not set/CONFIG_8139CP=y/g' build/.config
     - sed -i -- 's/# CONFIG_SND_ENS1370 is not set/CONFIG_SND_ENS1370=y/g' build/.config
     - sed -i -- 's/# CONFIG_SND_SOC_AC97_CODEC is not set/CONFIG_SND_SOC_AC97_CODEC=y/g' build/.config
+    - sed -i -- 's/CONFIG_RFKILL=m/CONFIG_RFKILL=y/g' build/.config
+    - sed -i -- 's/CONFIG_CFG80211=m/CONFIG_CFG80211=y/g' build/.config
+    - sed -i -- 's/CONFIG_BRCMFMAC=m/CONFIG_BRCMFMAC=y/g' build/.config
+    - sed -i -- 's/# CONFIG_SQUASHFS_XZ is not set/CONFIG_SQUASHFS_XZ=y/g' build/.config
   script:
     - make O=build Image
   artifacts:
