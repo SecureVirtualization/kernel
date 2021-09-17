@@ -1,9 +1,13 @@
 image: gcc:9
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 build:
   stage: build
   before_script:
     - apt update && apt -y install bison flex bc
+      # - git submodule update --recursive --remote --force
     - make O=build defconfig
     - sed -i -- 's/# CONFIG_MMC_SDHCI_PCI is not set/CONFIG_MMC_SDHCI_PCI=y/g' build/.config
     - sed -i -- 's/# CONFIG_NE2K_PCI is not set/CONFIG_NE2K_PCI=y/g' build/.config
@@ -15,7 +19,7 @@ build:
     - sed -i -- 's/CONFIG_BRCMFMAC=m/CONFIG_BRCMFMAC=y/g' build/.config
     - sed -i -- 's/# CONFIG_SQUASHFS_XZ is not set/CONFIG_SQUASHFS_XZ=y/g' build/.config
   script:
-    - make O=build Image
+    - make -j 2 O=build Image modules_prepare
   artifacts:
     paths:
       - build/arch/arm64/boot/Image
