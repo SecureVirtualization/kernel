@@ -18,6 +18,7 @@ build:
     - sed -i -- 's/CONFIG_CFG80211=m/CONFIG_CFG80211=y/g' build/.config
     - sed -i -- 's/CONFIG_BRCMFMAC=m/CONFIG_BRCMFMAC=y/g' build/.config
     - sed -i -- 's/# CONFIG_SQUASHFS_XZ is not set/CONFIG_SQUASHFS_XZ=y/g' build/.config
+    - sed -i -- 's/# CONFIG_VIRTIO_MMIO_CMDLINE_DEVICES is not set/CONFIG_VIRTIO_MMIO_CMDLINE_DEVICES=y/g' build/.config
   script:
     - make -j 2 O=build Image modules_prepare
   artifacts:
