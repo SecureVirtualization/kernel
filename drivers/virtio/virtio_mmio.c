@@ -734,7 +734,7 @@ static const struct kernel_param_ops vm_cmdline_param_ops = {
 	.get = vm_cmdline_get,
 };
 
-device_param_cb(device, &vm_cmdline_param_ops, NULL, S_IRUSR);
+device_param_cb(device, &vm_cmdline_param_ops, NULL, S_IRUSR | S_IWUSR);
 
 static int vm_unregister_cmdline_device(struct device *dev,
 		void *data)
