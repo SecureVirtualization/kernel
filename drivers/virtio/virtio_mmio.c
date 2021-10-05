@@ -662,13 +662,20 @@ static int vm_cmdline_set(const char *device,
 	int processed, consumed = 0;
 	struct platform_device *pdev;
 
+    pr_info("device=%s\n", device);
+
 	/* Consume "size" part of the command line parameter */
 	size = memparse(device, &str);
+
+    pr_info ("str=%s\n", str);
 
 	/* Get "@<base>:<irq>[:<id>]" chunks */
 	processed = sscanf(str, "@%lli:%u%n:%d%n",
 			&base, &irq, &consumed,
 			&vm_cmdline_id, &consumed);
+
+    pr_info("base=%lli irq=%u consumed=%d str[consumed]=%c\n",
+            base, irq, consumed, str[consumed]);
 
 	/*
 	 * sscanf() must process at least 2 chunks; also there
